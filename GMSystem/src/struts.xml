@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<include file="struts-default.xml"></include>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.action.extension" value="do,action"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.devMode" value="false"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- FieldAction -->
+		<action name="field_*" class="fieldAction" method="{1}">
+			<result name="Success">/jsp/success.jsp</result>
+			<result name="Fail">/jsp/error.jsp</result>
+			<result name="input">/jsp/error.jsp</result>
+			<result name="fieldInput">/jsp/FieldManage/fieldAdd.jsp</result>
+			<result name="toFieldUpdate">/jsp/FieldManage/fieldUpdate.jsp</result>
+			<result name="toFieldDetail">/jsp/FieldManage/fieldDetail.jsp</result>
+			<result name="updateInput">/fieldUpdate.jsp</result>
+			<result name="findSuccess">/jsp/FieldManage/fieldList.jsp</result>
+			<result name="findAllSuccess">/jsp/FieldManage/fieldAllList.jsp</result>
+			<result name="trashSuccess">/jsp/FieldManage/trashList.jsp</result>
+			<result name="saveSuccess">/jsp/FieldManage/fieldSaveList.jsp</result>
+			<result name="updateSuccess">/jsp/FieldManage/fieldUpdateList.jsp</result>
+		</action>
+		<!-- FieldRentAction -->
+		<action name="fieldrent_*" class="fieldRentAction" method="{1}">
+			<result name="Success">/jsp/success.jsp</result>
+			<result name="Fail">/jsp/error.jsp</result>
+			<result name="input">/jsp/error.jsp</result>
+			<result name="rentInput">/jsp/FieldManage/fieldRent/rentAdd.jsp</result>
+			<result name="toRentUpdate">/jsp/FieldManage/fieldRent/rentUpdate.jsp</result>
+			<result name="toRentDetail">/jsp/FieldManage/fieldRent/rentDetail.jsp</result>
+			<result name="updateInput">/fieldUpdate.jsp</result>
+			<result name="findSuccess">/jsp/FieldManage/fieldRent/rentList.jsp</result>
+			<result name="findAllSuccess">/jsp/FieldManage/fieldRent/rentAllList.jsp</result>
+			<result name="recordSuccess">/jsp/FieldManage/fieldRent/rentAllList.jsp</result>
+			<result name="noMissSuccess">/jsp/FieldManage/fieldRent/rentAllList.jsp</result>
+			<result name="trashSuccess">/jsp/FieldManage/fieldRent/trashList.jsp</result>
+			<result name="rentSuccess">/jsp/FieldManage/fieldRent/rentAddList.jsp</result>
+			<result name="rentEventSuccess">/jsp/success.jsp</result>
+			<result name="updateSuccess">/jsp/FieldManage/fieldRent/rentUpdateList.jsp</result>
+		</action>
+	
+		<!-- FieldSaveAction -->
+		<action name="fieldsave_*" class="fieldSaveAction" method="{1}">
+			<result name="Success">/jsp/success.jsp</result>
+			<result name="Fail">/jsp/error.jsp</result>
+			<result name="input">/jsp/error.jsp</result>
+			<result name="saveInput">/jsp/FieldManage/fieldSave/saveAdd.jsp</result>
+			<result name="toSaveUpdate">/jsp/FieldManage/fieldSave/saveUpdate.jsp
+			</result>
+			<result name="toSaveDetail">/jsp/FieldManage/fieldSave/saveDetail.jsp
+			</result>
+			<result name="updateInput">/saveUpdate.jsp</result>
+			<result name="findSuccess">/jsp/FieldManage/fieldSave/saveList.jsp</result>
+			<result name="findAllSuccess">/jsp/FieldManage/fieldSave/saveAllList.jsp
+			</result>
+			<result name="trashSuccess">/jsp/FieldManage/fieldSave/trashList.jsp</result>
+			<result name="saveSuccess">/jsp/FieldManage/fieldSave/saveAddList.jsp
+			</result>
+			<result name="updateSuccess">/jsp/FieldManage/fieldSave/saveUpdateList.jsp
+			</result>
+		</action>
+		<!-- FieldTypeAction -->
+		<action name="fieldtype_*" class="fieldTypeAction" method="{1}">
+			<result name="type">/Success.jsp</result>
+			<result name="typeInput">/Success.jsp</result>
+			<result name="toTypeUpdate">/Success.jsp</result>
+			<result name="updateInput">/Success.jsp</result>
+			<result name="trashCan">/Success.jsp</result>
+			<result name="deleteFail">/Fail.jsp</result>
+			<result name="success">/Success.jsp</result>
+			<result name="fail">/Fail.jsp</result>
+		</action>
+
+	</package>
+</struts>

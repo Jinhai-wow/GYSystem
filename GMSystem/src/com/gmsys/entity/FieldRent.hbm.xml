@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.gmsys.entity.FieldRent" table="fieldrent" lazy="false" select-before-update="true" dynamic-insert="true" dynamic-update="true">
+		<id name="fieldRentId" type="integer" column="fieldrentid">
+			<generator class="native" />
+		</id>
+		<property name="rentNomber" type="string" column="rentnomber" />
+		<property name="userName" type="string" column="username" not-null="true"/>
+		<property name="rentStartTime"  type="timestamp" column="rentstarttime" not-null="false"/>
+		<property name="rentEndTime"  type="timestamp" column="rentendtime" not-null="false"/>
+		<property name="rentStatus" type="boolean" column="rentstatus" not-null="false"/>
+		<property name="missStatus" type="boolean" column="missstatus" not-null="false"/>
+		<property name="rentMissTime"  type="timestamp" column="rentmisstime" not-null="false"/>
+		<property name="missReason" column="missreason" not-null="false"/>
+		<property name="deleteStatus" type="boolean" column="deletestatus" not-null="false"/>
+		<property name="rentUsage" column="rentusage" />
+		<property name="eventId" column="eventid" />
+		<many-to-one name="field" column="field" class="com.gmsys.entity.Field" lazy="false"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.gmsys.entity.FieldSave" table="fieldsave" lazy="false" select-before-update="true" dynamic-insert="true" dynamic-update="true">
+		<id name="fieldSaveId" type="integer" column="fieldsaveid">
+			<generator class="native" />
+		</id>
+		<property name="saveNomber" column="savenomber" />
+		<property name="saveTime"  type="timestamp" column="saveTime" />
+		<property name="saveReason" column="saveReason" />
+		<property name="fieldSaver" column="fieldsaver" not-null="true"/>
+		<property name="saveStatus" column="savestatus" />
+		<property name="savePrice" column="saveprice" />
+		<property name="deleteStatus" column="deletestatus" />
+		<many-to-one name="field" column="field" class="com.gmsys.entity.Field" lazy="false"/>
+	</class>
+</hibernate-mapping>

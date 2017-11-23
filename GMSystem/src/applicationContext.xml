@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:tx="http://www.springframework.org/schema/tx" 
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd 
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+   	
+   
+     <!-- 配置c3p0连接池 -->
+     <bean id="dataSource" class=" com.mchange.v2.c3p0.ComboPooledDataSource">
+      	<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+      	<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/gmsys"></property>
+      	<property name="user" value="root"></property>
+      	<property name="password" value="root"></property>
+     </bean>
+     
+     <!-- sessionFactory的创建 -->
+     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+     	<property name="dataSource" ref="dataSource"></property><!-- 注入dataSource -->
+     	<property name="configLocations" value="classpath:hibernate.cfg.xml"></property><!-- 指定hibernate核心配置文件 -->
+     </bean>
+     
+     <!-- 创建HibernateTemplate -->
+     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+     	<property name="sessionFactory" ref="sessionFactory"></property><!-- 注入sessionFactory -->
+     </bean>
+     
+     <!-- 事务 -->
+     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+     	<property name="sessionFactory" ref="sessionFactory"></property><!-- 注入datasource/sessionfactory都行 -->    	
+     </bean><!-- 配置事务管理器 -->
+   <tx:annotation-driven transaction-manager="transactionManager"/><!-- 开启事务注解，在要进行事务管理的方法的类上使用@transactional注解 -->
+     
+     <!-- Field -->
+     <bean id="fieldAction" class="com.gmsys.action.FieldAction" scope="prototype">      <!-- Action的创建并注入Service -->
+     	<property name="fieldService" ref="fieldService"></property>
+     	<property name="fieldTypeService" ref="fieldTypeService"></property>
+     </bean> 
+      <bean id="fieldRentAction" class="com.gmsys.action.FieldRentAction" scope="prototype">      <!-- Action的创建并注入Service -->
+     	<property name="fieldRentService" ref="fieldRentService"></property>
+     	<property name="fieldService" ref="fieldService"></property>
+     </bean> 
+     <bean id="fieldTypeAction" class="com.gmsys.action.FieldTypeAction" scope="prototype">      <!-- Action的创建并注入Service -->
+     	<property name="fieldTypeService" ref="fieldTypeService"></property>
+     </bean>
+     <bean id="fieldSaveAction" class="com.gmsys.action.FieldSaveAction" scope="prototype">      <!-- Action的创建并注入Service -->
+     	<property name="fieldSaveService" ref="fieldSaveService"></property>
+     	<property name="fieldService" ref="fieldService"></property>
+     </bean>
+     
+     
+     <bean id="fieldService" class="com.gmsys.service.FieldServiceImpl">				 <!-- Service的创建并注入Dao -->
+     	<property name="fieldDao" ref="fieldDao"></property>
+     	<property name="fieldRentDao" ref="fieldRentDao"></property>
+     </bean>
+     <bean id="fieldTypeService" class="com.gmsys.service.FieldTypeServiceImpl">				 <!-- Service的创建并注入Dao -->
+     	<property name="fieldTypeDao" ref="fieldTypeDao"></property>
+     </bean>
+     <bean id="fieldRentService" class="com.gmsys.service.FieldRentServiceImpl">				 <!-- Service的创建并注入Dao -->
+     	<property name="fieldRentDao" ref="fieldRentDao"></property>
+     </bean>
+     <bean id="fieldSaveService" class="com.gmsys.service.FieldSaveServiceImpl">				 <!-- Service的创建并注入Dao -->
+     	<property name="fieldSaveDao" ref="fieldSaveDao"></property>
+     </bean>
+     
+     
+     <bean id="fieldDao" class="com.gmsys.dao.FieldDaoImpl">
+     	<property name="hibernateTemplate" ref="hibernateTemplate"></property>				<!-- Dao的创建并注入hibernateTemplate -->
+     </bean>
+     <bean id="fieldTypeDao" class="com.gmsys.dao.FieldTypeDaoImpl">
+     	<property name="hibernateTemplate" ref="hibernateTemplate"></property>				<!-- Dao的创建并注入hibernateTemplate -->
+     </bean>
+     <bean id="fieldRentDao" class="com.gmsys.dao.FieldRentDaoImpl">
+     	<property name="hibernateTemplate" ref="hibernateTemplate"></property>				<!-- Dao的创建并注入hibernateTemplate -->
+     </bean>
+     <bean id="fieldSaveDao" class="com.gmsys.dao.FieldSaveDaoImpl">
+     	<property name="hibernateTemplate" ref="hibernateTemplate"></property>				<!-- Dao的创建并注入hibernateTemplate -->
+     </bean>
+</beans>
+

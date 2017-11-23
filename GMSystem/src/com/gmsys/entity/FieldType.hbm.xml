@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.gmsys.entity.FieldType" table="fieldtype" >
+		<id name="fieldTypeId" type="integer" column="fieldtypeid">
+			<generator class="native" />
+		</id>
+		<property name="fieldTypeName" column="fieldtypename" not-null="true"/>
+		<property name="rentPrice" column="rentPrice"/>
+		<property name="fieldTypeDesc" column="fieldtypedesc" />
+<!-- 	<set name="fields" cascade="all">
+            <key column="fieldtype"/>
+            <one-to-many class="com.gmsys.entity.Field" />
+        </set> -->	
+	</class>
+</hibernate-mapping>

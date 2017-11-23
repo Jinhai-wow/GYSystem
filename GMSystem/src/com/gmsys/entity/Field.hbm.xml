@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.gmsys.entity.Field" table="field" dynamic-insert="true" dynamic-update="true" select-before-update="true">
+		<id name="fieldId" type="integer" column="fieldid">
+			<generator class="native" />
+		</id>
+		<property name="fieldNomber" column="fieldnomber" />
+		<property name="fieldName" column="fieldname" not-null="true" />
+		<property name="fieldUsage" column="fieldusage" not-null="true"/>
+		<property name="fieldStartTime" type="timestamp" column="fieldstarttime" />
+		<property name="fieldRentCounts" column="fieldrentcounts" />
+		<property name="fieldSaveCounts" column="fieldsavecounts" />
+		<property name="charger" column="charger" not-null="true" />
+		<property name="fieldStatus" column="fieldstatus" />
+		<property name="fieldRentStatus" column="fieldrentstatus" />
+		<property name="fieldSaveStatus" column="fieldsavestatus" />
+		<property name="fieldRentPrice" column="fieldrentprice" />
+<!--  -->		<many-to-one name="fieldType" column="fieldtype" class="com.gmsys.entity.FieldType" lazy="false"/>
+	</class>
+</hibernate-mapping>
